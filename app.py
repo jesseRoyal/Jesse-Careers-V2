@@ -1,26 +1,9 @@
 from flask import Flask, jsonify, render_template, redirect, url_for, request
+from database import load_jobs_from_db
 
 app = Flask(__name__)
-JOBS =[{
-    'id':1,
-    'title':'Data Analyst',
-    'location':'Kingston, Jamaica',
-    'salary':'USD. $150,000'
-},{
-    'id':2,
-    'title':'Data Scientist',
-    'location':'London, UK',
-    'salary':'USD. $200,000'
-},{
-    'id':3,
-    'title':'Frontend Engineer',
-    'location':'Remote'
-},{
-    'id':4,
-    'title':'Backend Engineer',
-    'location':'San Francisco, USA',
-    'salary':'USD. $200,000'
-}]
+
+
 
 # Example data for events and team members
 events = [
@@ -38,11 +21,13 @@ team_members = [
 
 @app.route("/")
 def hello_world():
-    return render_template('home.html', jobs=JOBS, company_name='Paramount technologies')
+    jobs = load_jobs_from_db()
+    return render_template('home.html', jobs=jobs, company_name='Paramount technologies')
 
-@app.route("/jobs")
+@app.route("/api/jobs")
 def list_jobs():
-    return jsonify(JOBS)
+    jobs = load_jobs_from_db()
+    return jsonify(jobs)
 
 @app.route('/about')
 def aboutp():

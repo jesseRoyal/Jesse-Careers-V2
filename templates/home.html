@@ -1,48 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Paramount technologies</title>
+    <title>Paramount Technologies</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-      #banner{
+      #banner {
         width: 100%;
         height: 360px;
         object-fit: cover;
-        margin-bottom: 16px
+        margin-bottom: 1rem;
+      }
+      .career-section {
+        margin-bottom: 2rem;
       }
     </style>
   </head>
   <body>
-    {%include 'nav.html' %}
-     <h1 class="text-center mt-2 mb-4">Welcome to {{company_name}}</h1>
-    <img class= " img-fluid"id="banner" src="https://c72825b5-5a03-4842-852a-581cc7cd8445-00-v3iaujmgt67.picard.replit.dev/static/banner.jpg">
+    {% include 'nav.html' %}
+    
     <div class="container">
+      <h1 class="text-center mt-3 mb-4">Welcome to {{ company_name }}</h1>
+      <img id="banner" src="/static/banner.jpg" alt="Banner" class="img-fluid">
       
- 
-      <h1 class="text-center mt-2 mb-4">Paramount technologies Careers</h1>
-   
-      <div class="row" style = "margin-bottom:16px">
-        <div class='col-md-6'>
-    <p class="lead">At Paramount Technologies, we believe that freedom, sustainability, and cutting-edge innovation are the pillars of a thriving digital future. Our mission is to connect ambitious tech professionals with opportunities that empower growth, drive progress, and create a lasting impact. Whether you're launching your career or taking it to the next level, Paramount Technologies is your gateway to success in the ever-evolving world of technology.
-
-      Innovate. Grow. Thrive. Welcome to the future.</p>
+      <h1 class="text-center my-4">Paramount Technologies Careers</h1>
+      <div class="row align-items-center career-section">
+        <div class="col-md-6">
+          <p class="lead">
+            At Paramount Technologies, we believe that freedom, sustainability, and cutting-edge innovation are the pillars of a thriving digital future. Our mission is to connect ambitious tech professionals with opportunities that empower growth, drive progress, and create a lasting impact. Whether you're launching your career or taking it to the next level, Paramount Technologies is your gateway to success in the ever-evolving world of technology.
+          </p>
+          <p class="lead">Innovate. Grow. Thrive. Welcome to the future.</p>
+        </div>
+        <div class="col-md-6 d-none d-md-block">
+          <img src="/static/people.jpg" alt="Team at work" style="height:320px; border-radius:4px;" class="img-fluid">
+        </div>
       </div>
-      <div class="d-none d-md-block col-6">
-      <img src="/static/people.jpg" style="height:320px; border-radius:4px;"">
+      
+      <h2 class="my-4">Open Positions</h2>
+      <div>
+        {% for job in jobs %}
+          {% include 'jobitem.html' %}
+        {% endfor %}
       </div>
+      
+      <div class="text-center my-4">
+        <a class="btn btn-primary btn-lg" href="mailto:jesse.careersai.com?cc=jessecareers.contact.com&subject=Hi%20there%20Jesse%20Career's&body=We%20would%20love%20to%20hear%20from%20you">
+          Contact Us
+        </a>
       </div>
-    <h2>Open Positions</h2>
-    <div> 
-      {% for job in jobs %}
-        {% include 'jobitem.html' %}
-      {% endfor %}
     </div>
-      <div class="text-center">
-    <a class="btn btn-primary btn-lg" href="mailto:jesse.careersai.com?cc=jessecareers.contact.com&subject=Hi%20there%20Jesse%20Career's&body=We%20would%20love%20to%20hear%20from%20you">Contact US</a> 
-      </div>
-    </div>
+    
     {% include 'footer.html' %}
   </body>
 </html>
